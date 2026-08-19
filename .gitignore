@@ -216,3 +216,15 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Project-specific local and generated files
+.DS_Store
+.idea/
+.vscode/
+*.zip
+*.xlsx
+outputs/
+tmp/
+
+# Raw market data are excluded until provenance and redistribution are verified.
+data_hourly_crypto/*.csv
