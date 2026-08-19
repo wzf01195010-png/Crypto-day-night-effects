@@ -1,9 +1,49 @@
 # Crypto-day-night-effects
 
-Replication code and data for "On the Performance of Lagged Momentum and Reversal Strategies Across Daytime and Overnight Sessions in Bitcoin and Ethereum Cryptocurrencies" (Journal of Risk and Financial Management, 2026).
+Replication code and versioned paper outputs for "On the Performance of Lagged Momentum and Reversal Strategies Across Daytime and Overnight Sessions in Bitcoin and Ethereum Cryptocurrencies" (Journal of Risk and Financial Management, 2026).
 
 This repository contains the Python code used to reproduce the analyses and
-figures in the manuscript. Notebook files are not required.
+figures in the manuscript. It also includes the paper figures and machine-readable
+result tables generated on August 19, 2026. Notebook files are not required.
+
+## Paper outputs
+
+- [`paper_outputs/figures`](paper_outputs/figures) contains the five PNG figures
+  used in the manuscript: the BTC and ETH cutoff comparisons, annualized
+  volatility, annualized Sharpe ratios, and maximum drawdowns.
+- [`paper_outputs/tables`](paper_outputs/tables) contains the complete strategy
+  and cutoff results, annual figure data, statistical-test results, and the 2025
+  IBIT/ETHA metrics in CSV format.
+
+The two full strategy files are:
+
+- `btc_eth_all_metrics.csv`: 1,050 rows covering both assets, 25 ordered
+  strategies, 0/1/2 bps, and the seven core UTC cutoffs from 04:00 to 10:00.
+- `cutoff_strategy_full_results.csv`: 1,800 rows covering both assets, all 25
+  ordered strategies, 0/1/2 bps, and all 12 hourly cutoffs examined in the
+  cutoff search.
+
+### Figure gallery
+
+**Best BTC strategy by cutoff**
+
+![Best BTC strategy by cutoff](paper_outputs/figures/BTC_cutoff_best_strategy_barchart.png)
+
+**Best ETH strategy by cutoff**
+
+![Best ETH strategy by cutoff](paper_outputs/figures/ETH_cutoff_best_strategy_barchart.png)
+
+**Annualized volatility by year**
+
+![Annualized volatility by year](paper_outputs/figures/Annualized_volatility_year.png)
+
+**Annualized Sharpe ratio by year**
+
+![Annualized Sharpe ratio by year](paper_outputs/figures/annualized_sharpe_ratio_by_year.png)
+
+**Maximum drawdown by year**
+
+![Maximum drawdown by year](paper_outputs/figures/maximum_drawdown_by_year.png)
 
 ## Repository contents
 
@@ -16,8 +56,9 @@ figures in the manuscript. Notebook files are not required.
 | `figure_annual_sharpe_mdd.py` | Annualized Sharpe ratio and maximum drawdown by calendar year |
 | `etf_2025_analysis.py` | The 2025 IBIT and ETHA terminal-wealth and risk-metric tables |
 
-Generated files are written under `outputs/` and are intentionally excluded
-from version control.
+Freshly generated files are written under `outputs/` and are intentionally
+excluded from version control. The manuscript copies used for the repository
+audit are retained in `paper_outputs/`.
 
 ## Data files
 
@@ -34,9 +75,9 @@ The BTC and ETH scripts require the columns `open_time`, `timestamp`, and
 `adj_close`.
 
 The manuscript identifies Kraken's official historical market-data archive
-as the BTC/ETH source. Raw data are not committed here. Before publishing
-data, verify the Kraken provenance, document the handling of hours with no
-trades, and confirm that redistribution is permitted. An older Bitstamp or
+as the BTC/ETH source. Raw BTC/ETH data are not committed because their
+provenance, the treatment of hours with no trades, and redistribution rights
+must be independently verified before publication. An older Bitstamp or
 third-party file must not be relabeled as Kraken data.
 
 ## Environment
@@ -64,6 +105,9 @@ python etf_2025_analysis.py
 
 The main backtest must run before the statistical and figure scripts because
 they validate their results against `outputs/tables/btc_eth_all_metrics.csv`.
+
+The code retains `trend` as an internal legacy identifier. All manuscript-facing
+labels use the term `Momentum`.
 
 ## Scope
 
